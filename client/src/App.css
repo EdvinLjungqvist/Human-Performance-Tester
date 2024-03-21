@@ -1,0 +1,55 @@
+#root {
+    height: 100%;
+}
+
+.title-container,
+.content-container,
+.button-container {
+    display: grid;
+}
+
+.title-container {
+    gap: 20px;
+    text-align: center;
+}
+
+.content-container {
+    gap: 50px;
+    grid-auto-flow: row;
+}
+
+.button-container {
+    gap: 10px;
+    grid-auto-flow: column;
+    justify-content: center;
+}
+
+.button {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 25px;
+    border-radius: 3px;
+    color: var(--color-text-0);
+    background-color: var(--color-purple-0);
+}
+
+.button:hover {
+    color: var(--color-text-0);
+    background-color: var(--color-purple-1);
+}
+
+.button.green {
+    background-color: var(--color-green-0);
+}
+
+.button.green:hover {
+    background-color: var(--color-green-1);
+}
+
+.button.red {
+    background-color: var(--color-red-0);
+}
+
+.button.red:hover {
+    background-color: var(--color-red-1);
+}

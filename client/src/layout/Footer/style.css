@@ -1,0 +1,39 @@
+footer {
+    height: 75px;
+}
+
+.footer-content {
+    width: var(--width);
+    height: 75px;
+    margin: 0 auto;
+    gap: 20px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.footer-text,
+.footer-link {
+    font-size: 16px;
+    padding: 0;
+}
+
+.footer-link {
+    color: var(--color-text-1);
+}
+
+.footer-link:hover {
+    color: var(--color-text-0);
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

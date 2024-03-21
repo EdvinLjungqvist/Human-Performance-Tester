@@ -1,0 +1,16 @@
+{
+    "name": "gymnasiearbete",
+    "version": "1.0.0",
+    "description": "A website where users challenges themselves and compete in various tests that measure performance.",
+    "main": "index.js",
+    "scripts": {
+        "client": "cd client && npm start",
+        "server": "cd server && npm start",
+        "start": "concurrently \"npm run client\" \"npm run server\""
+    },
+    "author": "Edvin Ljungqvist",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

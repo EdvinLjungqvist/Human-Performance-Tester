@@ -1,0 +1,7 @@
+main {
+    width: var(--width);
+    margin: 50px auto;
+    gap: 100px;
+    display: grid;
+    grid-auto-flow: row;
+}

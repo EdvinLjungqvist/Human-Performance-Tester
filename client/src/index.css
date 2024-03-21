@@ -1,0 +1,140 @@
+:root {
+    --color-text-0: #f9faff;
+	--color-text-1: #9ba9b4;
+    --color-background-0: #1e1f24;
+	--color-background-1: #16171b;
+	--color-background-2: #121316;
+    --color-white-0: #f9faff;
+    --color-white-1: #9ba9b4;
+    --color-purple-0: #6c359a;
+	--color-purple-1: #5f2e88;
+    --color-green-0: #418f37;
+	--color-green-1: #387730;
+    --color-red-0: #8f3737;
+	--color-red-1: #773030;
+    --color-link-0: #578cff;
+    --color-link-1: #3f7cff;
+    --color-category-success: #38c036;
+    --color-category-info: #363fc0;
+    --color-category-error: #c03636;
+    --color-role-admin-0: #359a98;
+    --color-role-admin-1: #1c4443;
+    --color-role-guest-0: #35619a;
+    --color-role-guest-1: #233650;
+    --border: 1px solid #2f3138;
+    --width: calc(100% - 30px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    transition: 100ms;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-width: 350px;
+    min-height: 100%;
+    position: relative;
+    background-color: var(--color-background-1);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+    color: var(--color-text-0);
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4,
+p,
+li,
+a {
+    font-size: 20px;
+}
+
+h4,
+p,
+li {
+    color: var(--color-text-1);
+}
+
+a {
+    display: inline-block;
+    text-decoration-line: none;
+    color: var(--color-link-0);
+}
+
+a:hover {
+    color: var(--color-link-1);
+}
+
+li {
+    list-style-position: inside;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    color: var(--color-white-0);
+    background-color: var(--color-purple-0);
+}
+
+button:hover {
+    background-color: var(--color-purple-1);
+}
+
+button.green {
+    background-color: var(--color-green-0);
+}
+
+button.green:hover {
+    background-color: var(--color-green-1);
+}
+
+button.red {
+    background-color: var(--color-red-0);
+}
+
+button.red:hover {
+    background-color: var(--color-red-1);
+}
+
+img {
+    width: 100%;
+    border-radius: 3px;
+}
+
+@media (min-width: 992px) {
+    :root {
+        --width: 900px;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --width: 1150px;
+    }
+}
