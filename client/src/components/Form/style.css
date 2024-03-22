@@ -1,0 +1,76 @@
+form,
+label {
+    display: grid;
+    grid-auto-flow: row;
+    align-content: start;
+}
+
+form {
+    width: 100%;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+label {
+    width: 100%;
+    gap: 5px;
+    font-size: 20px;
+    color: var(--color-text-1);
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+input[type=number] {
+    width: fit-content;
+    padding: 10px;
+}
+
+textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    max-height: 500px;
+}
+
+input {
+    font-size: 18px;
+}
+
+input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+}
+
+input[type=submit] {
+    width: fit-content;
+    padding: 15px 25px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-0);
+    background-color: var(--color-purple-0);
+}
+
+input[type=submit]:hover {
+    background-color: var(--color-purple-1);
+}
+
+.checkbox-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    form {
+        width: 60%;
+    }
+}

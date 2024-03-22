@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
 
     verify(token, SECRET_KEY, (error, decoded) => {
         if (error) {
-            return next(new StatusError("Invalid token", 498));
+            return next(new StatusError("Invalid token", 401));
         }
         req.profileID = decoded.profileID;
         next();
@@ -41,14 +41,14 @@ const verifySignin = (req, res, next) => {
             return next(new StatusError("Internal Server Error", 500));
         }
         if (result.length === 0) {
-            return next(new StatusError("Invalid username or password", 400));
+            return next(new StatusError("Wrong username or password", 400));
         }
         const profile = result[0];
 
         compare(password, profile.password)
             .then(result => {
                 if (!result) {
-                    return next(new StatusError("Invalid username or password", 400));
+                    return next(new StatusError("Wrong username or password", 400));
                 }
                 req.profileID = profile.id;
                 next();

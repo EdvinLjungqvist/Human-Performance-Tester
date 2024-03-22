@@ -1,0 +1,76 @@
+:root {
+    --color-flash-duration: #36373b;
+}
+
+.flash {
+    width: var(--width);
+    border-radius: 5px;
+    bottom: 10px;
+    position: fixed;
+    animation: 500ms ease-out move-up-down;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-background-0);
+    overflow: hidden;
+}
+
+.flash-container {
+    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+#flash-duration {
+    width: 0;
+    height: 3px;
+    display: block;
+    background-color: var(--color-flash-duration);
+    animation: 3s linear flash-duration;
+}
+
+.flash-content {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flash-button {
+    padding: 15px;
+    background-color: var(--color-background-0);
+}
+
+.flash-button:hover {
+    background-color: var(--color-background-1);
+}
+
+.flash-title.success {
+    color: var(--color-category-success);
+}
+
+.flash-title.info {
+    color: var(--color-category-info);
+}
+
+.flash-title.error {
+    color: var(--color-category-error);
+}
+
+@keyframes move-up-down {
+    0% {
+      transform: translateX(-50%) translateY(200%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes flash-duration {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}

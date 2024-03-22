@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthProvider";
 import logo from "../../assets/images/logo.png";
+import profilePicture from "../../assets/images/profile-picture.png";
 import "./style.css";
 
 const Header = () => {
     const [menuActive, setMenuActive] = useState(false);
+    const { auth, profile } = useAuth();
 
     const toggleMenuActive = () => setMenuActive(!menuActive);
 
@@ -25,7 +28,22 @@ const Header = () => {
                             Statistics
                         </NavLink>
                     </li>
-                    
+                    {auth && profile ? (
+                        <li className="nav-item">
+                            <NavLink to="/profile" className="nav-link profile" activeclassname="active" end onClick={toggleMenuActive}>
+                                <img src={profilePicture} alt="profile" className="profile-picture" />
+                                <span className="profile-name">
+                                    {profile.username}
+                                </span>
+                            </NavLink>
+                        </li>
+                    ) : (
+                        <li className="nav-item">
+                            <NavLink to="/signin" className="nav-link signin" activeclassname="active" end onClick={toggleMenuActive}>
+                                Signin
+                            </NavLink>
+                        </li>
+                    )}
                 </ul>
                 <button id="hamburger" onClick={toggleMenuActive}>
                     <i className="fa-solid fa-bars fa-xl" />

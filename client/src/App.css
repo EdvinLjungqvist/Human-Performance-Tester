@@ -53,3 +53,8 @@
 .button.red:hover {
     background-color: var(--color-red-1);
 }
+
+.text-highlight {
+    color: var(--color-text-0);
+    font-weight: 800;
+}
