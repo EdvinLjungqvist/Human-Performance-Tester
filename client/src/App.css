@@ -58,3 +58,16 @@
     color: var(--color-text-0);
     font-weight: 800;
 }
+
+.role {
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+.role.admin {
+    color: var(--color-role-admin)
+}
+
+.role.guest {
+    color: var(--color-role-guest);
+}

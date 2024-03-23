@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import Statistics from "../../components/Statistics";
 import image from "../../assets/images/image.png";
 
 const Home = () => {
@@ -25,6 +26,22 @@ const Home = () => {
                     </div>
                 </div>
                 <img src={image} alt="image" />
+                <section className="content-container">
+                    <div className="title-container">
+                        <h2>
+                            Statistics
+                        </h2>
+                        <p>
+                            This website saves a lot of statistics
+                        </p>
+                    </div>
+                    <Statistics />
+                    <div className="button-container">
+                        <Link to="/statistics" className="button">
+                            Read more
+                        </Link>
+                    </div>
+                </section>
             </article>
         </>
     )

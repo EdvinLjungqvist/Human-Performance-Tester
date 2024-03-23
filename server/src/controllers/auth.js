@@ -12,7 +12,7 @@ const signup = (req, res, next) => {
 
     hash(password, 10)
         .then(hash => {
-            sql = "INSERT INTO gymnasiearbete.profiles (username, password, born) VALUES (?, ?, ?)";
+            sql = "INSERT INTO profiles (username, password, born) VALUES (?, ?, ?)";
 
             connection.query(sql, [username, hash, born], (err, result) => {
                 if (err) {
@@ -27,7 +27,10 @@ const signin = (req, res) => {
     const profileID = req.profileID;
     const token = sign({ profileID: profileID }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
 
-    res.cookie("token", token).end();
+    res.cookie("token", token, {
+        sameSite: "none",
+        secure: true
+    }).end();
 };
 
 const signout = (req, res) => {

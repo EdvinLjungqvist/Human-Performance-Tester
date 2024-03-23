@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/AuthProvider";
 const Public = () => {
     const { loadingAuth, auth } = useAuth();
 
-    return !loadingAuth && auth ? <Navigate to="/profile" /> : <Outlet />;
+    return !loadingAuth ? auth ? <Navigate to="/profile" /> : <Outlet /> : null;
 };
 
 export default Public;

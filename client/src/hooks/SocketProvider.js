@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import socket from "../services/socket";
 
 const SocketContext = createContext();
@@ -11,6 +10,13 @@ const useSocket = () => {
 const SocketProvider = ({ children }) => {
     const [loadingRoom, setLoadingRoom] = useState(true);
     const [room, setRoom] = useState(null);
+
+    useEffect(() => {
+        socket.emit("room:get", room => {
+            setRoom(room);
+            setLoadingRoom(false);
+        });
+    }, []);
 
     const value = {
         loadingRoom,

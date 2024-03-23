@@ -4,10 +4,12 @@ import { useAuth } from "../../hooks/AuthProvider";
 import logo from "../../assets/images/logo.png";
 import profilePicture from "../../assets/images/profile-picture.png";
 import "./style.css";
+import { useSocket } from "../../hooks/SocketProvider";
 
 const Header = () => {
     const [menuActive, setMenuActive] = useState(false);
     const { auth, profile } = useAuth();
+    const { room } = useSocket();
 
     const toggleMenuActive = () => setMenuActive(!menuActive);
 
@@ -29,14 +31,29 @@ const Header = () => {
                         </NavLink>
                     </li>
                     {auth && profile ? (
-                        <li className="nav-item">
-                            <NavLink to="/profile" className="nav-link profile" activeclassname="active" end onClick={toggleMenuActive}>
-                                <img src={profilePicture} alt="profile" className="profile-picture" />
-                                <span className="profile-name">
-                                    {profile.username}
-                                </span>
-                            </NavLink>
-                        </li>
+                        <>
+                            {room ? (
+                                <li className="nav-item">
+                                    <NavLink to={`/room/${room.id}`} className="nav-link" activeclassname="active" end onClick={toggleMenuActive}>
+                                        Room
+                                    </NavLink>
+                                </li>
+                            ) : (
+                                <li className="nav-item">
+                                    <NavLink to="/rooms" className="nav-link" activeclassname="active" end onClick={toggleMenuActive}>
+                                        Rooms
+                                    </NavLink>
+                                </li>
+                            )}
+                            <li className="nav-item">
+                                <NavLink to="/profile" className="nav-link profile" activeclassname="active" end onClick={toggleMenuActive}>
+                                    <img src={profilePicture} alt="profile" className="profile-picture" />
+                                    <span className="profile-name">
+                                        {profile.username}
+                                    </span>
+                                </NavLink>
+                            </li>
+                        </>
                     ) : (
                         <li className="nav-item">
                             <NavLink to="/signin" className="nav-link signin" activeclassname="active" end onClick={toggleMenuActive}>

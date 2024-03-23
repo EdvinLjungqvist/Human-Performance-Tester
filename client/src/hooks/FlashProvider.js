@@ -1,4 +1,4 @@
-const { createContext, useContext, useState } = require("react");
+import { createContext, useContext, useState } from "react";
 
 const FlashContext = createContext();
 
