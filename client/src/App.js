@@ -1,6 +1,6 @@
-import Header from "./layout/Header";
-import Main from "./layout/Main";
-import Footer from "./layout/Footer";
+import Header from "./layouts/Header";
+import Main from "./layouts/Main";
+import Footer from "./layouts/Footer";
 import Loader from "./components/Loader";
 import Flash from "./components/Flash";
 import "./App.css";

@@ -19,6 +19,9 @@
 
 .gallery-content {
     padding: 20px;
+    gap: 20px;
+    display: grid;
+    grid-auto-flow: row;
 }
 
 .gallery-title,

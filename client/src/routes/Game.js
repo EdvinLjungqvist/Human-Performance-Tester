@@ -5,7 +5,10 @@ const Game = () => {
     const { loadingRoom, room } = useSocket();
     const { id } = useParams();
 
-    return !loadingRoom ? room ? room.id === id ? <Outlet /> : <Navigate to={`/room/${room.id}`} /> : <Navigate to="/rooms" /> : null;
+    if (loadingRoom) return null;
+    if (!room) return <Navigate to="/rooms" />;
+    if (room.id !== id) return <Navigate to={`/room/${room.id}`} />;
+    return <Outlet />;
 };
 
 export default Game;

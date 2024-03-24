@@ -10,6 +10,7 @@ const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
     const [loadingAuth, setLoadingAuth] = useState(true);
+    const [loadingProfile, setLoadingProfile] = useState(true);
     const [auth, setAuth] = useState(false);
     const [profile, setProfile] = useState(null);
     const { setLoading } = useLoading();
@@ -26,12 +27,17 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
+        setLoadingProfile(true);
+
         if (auth) {
             setLoading("Loading profile...");
             get("/profile")
                 .then(response => setProfile(response.data))
                 .catch(() => setProfile(null))
-                .finally(() => setLoading(null));
+                .finally(() => {
+                    setLoading(null);
+                    setLoadingProfile(false);
+                });
         }
     }, [auth]);
 
@@ -39,6 +45,7 @@ const AuthProvider = ({ children }) => {
         loadingAuth,
         auth,
         setAuth,
+        loadingProfile,
         profile,
         setProfile
     };

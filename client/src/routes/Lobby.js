@@ -3,8 +3,10 @@ import { useSocket } from "../hooks/SocketProvider";
 
 const Lobby = () => {
     const { loadingRoom, room } = useSocket();
-
-    return !loadingRoom ? room ? <Navigate to={`/room/${room.id}`} /> : <Outlet /> : null;
+    
+    if (loadingRoom) return null;
+    if (room) return <Navigate to={`/room/${room.id}`} />;
+    return <Outlet />;
 };
 
 export default Lobby;

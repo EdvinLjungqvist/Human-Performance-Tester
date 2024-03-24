@@ -1,0 +1,46 @@
+.room-list {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.room-list-item {
+    padding: 10px 10px 10px 15px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    background-color: var(--color-background-2);
+}
+
+.room-list-content {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-list-id,
+.room-list-playing {
+    font-weight: 800;
+    color: var(--color-text-0);
+}
+
+.room-list-id {
+    max-width: 200px;
+    display: block;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.room-list-text {
+    width: 100%;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .room-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

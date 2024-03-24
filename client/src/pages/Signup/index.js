@@ -24,7 +24,7 @@ const Signup = () => {
             .then(() => {
                 navigate("/signin");
                 setFlash({
-                    message: "Successfully signed in!",
+                    message: "Successfully signed up!",
                     category: category.success
                 });
             })

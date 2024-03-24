@@ -12,16 +12,25 @@ const SocketProvider = ({ children }) => {
     const [room, setRoom] = useState(null);
 
     useEffect(() => {
-        socket.emit("room:get", room => {
+        const onGetRoom = room => {
             setRoom(room);
             setLoadingRoom(false);
-        });
+        };
+
+        socket.emit("room:get", onGetRoom);
+        socket.on("room:get", onGetRoom);
+
+        return () => {
+            socket.off("room:get", onGetRoom);
+        };
     }, []);
 
     const value = {
-        loadingRoom,
         socket,
-        room
+        loadingRoom,
+        setLoadingRoom,
+        room,
+        setRoom
     };
 
     return (

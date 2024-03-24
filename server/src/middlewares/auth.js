@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../configs/database");
 const { verify } = require("jsonwebtoken");
 const { compare } = require("bcrypt");
 const StatusError = require("../utils/StatusError");

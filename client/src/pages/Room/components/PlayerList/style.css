@@ -1,0 +1,24 @@
+.player-list {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.player-list-item {
+    padding: 20px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-background-2);
+}
+
+.player-list-text {
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .player-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

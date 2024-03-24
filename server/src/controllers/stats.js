@@ -1,4 +1,4 @@
-const connection = require("../config/database");
+const connection = require("../configs/database");
 const StatusError = require("../utils/StatusError");
 
 const createVerbalMemoryStats = (req, res, next) => {
