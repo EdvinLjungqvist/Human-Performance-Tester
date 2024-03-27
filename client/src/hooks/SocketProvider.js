@@ -16,7 +16,6 @@ const SocketProvider = ({ children }) => {
             setRoom(room);
             setLoadingRoom(false);
         };
-
         socket.emit("room:get", onGetRoom);
         socket.on("room:get", onGetRoom);
 

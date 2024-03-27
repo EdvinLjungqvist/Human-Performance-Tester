@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import Statistics from "../../components/Statistics";
+import Statistics from "./components/Statistics";
 import image from "../../assets/images/image.png";
 
 const Home = () => {

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useFlash } from "../../hooks/FlashProvider";
 import { category } from "../../components/Flash";
 import RoomComponent from "./components/Room";
+import PlayerList from "./components/PlayerList";
 
 const Room = () => {
     const { socket, room, setRoom } = useSocket();
@@ -42,6 +43,16 @@ const Room = () => {
         });
     };
 
+    const copyURL = () => {
+        const URL = document.location.href;
+
+        navigator.clipboard.writeText(URL);
+        setFlash({
+            message: `Copied room URL to clipboard!`,
+            category: category.success
+        });
+    };
+
     return (
         <>
             <Helmet>
@@ -49,11 +60,20 @@ const Room = () => {
                     {room.id} | Human Performance Tester
                 </title>
             </Helmet>
-            <RoomComponent />
-            <div className="button-container">
-                <button className="red" onClick={leave}>
-                    Leave
-                </button>
+            <div className="content-container">
+                <RoomComponent />
+                <div className="button-container">
+                    <button onClick={copyURL}>
+                        <i class="fa-solid fa-copy" /> Copy URL
+                    </button>
+                    <button className="red" onClick={leave}>
+                        Leave
+                    </button>
+                </div>
+                <h2>
+                    Players ({room.players.length})
+                </h2>
+                <PlayerList />
             </div>
         </>
     );

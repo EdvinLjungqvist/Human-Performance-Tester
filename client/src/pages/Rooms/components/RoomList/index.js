@@ -52,7 +52,7 @@ const RoomList = ({ rooms }) => {
             ) : (
                 <>
                     <p>
-                        No rooms have been created yet!
+                        There are no active rooms!
                     </p>
                 </>
             )}

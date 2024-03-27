@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import image from "../../assets/images/image.png";
+import image from "../../../../assets/images/image.png";
 import "./style.css";
 
 const Gallery = () => {

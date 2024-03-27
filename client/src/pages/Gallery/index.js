@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import GalleryComponent from "../../components/Gallery";
+import GalleryComponent from "./components/Gallery";
 
 const Gallery = () => {
     return (

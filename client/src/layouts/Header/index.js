@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/AuthProvider";
 import logo from "../../assets/images/logo.png";
 import profilePicture from "../../assets/images/profile-picture.png";
-import "./style.css";
 import { useSocket } from "../../hooks/SocketProvider";
+import "./style.css";
 
 const Header = () => {
     const [menuActive, setMenuActive] = useState(false);

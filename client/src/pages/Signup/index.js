@@ -68,7 +68,7 @@ const Signup = () => {
                         <input type="checkbox" required />
                         I accept the terms and conditions.
                     </label>
-                    <input type="submit" value="Sign in" />
+                    <input type="submit" value="Sign up" />
                 </Form>
             </section>
         </>

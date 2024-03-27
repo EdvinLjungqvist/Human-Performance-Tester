@@ -16,6 +16,7 @@ const signup = (req, res, next) => {
 
             connection.query(sql, [username, hash, born], (err, result) => {
                 if (err) {
+                    console.log(err);
                     return next(new StatusError("Internal Server Error", 500));
                 }
                 res.status(200).end();

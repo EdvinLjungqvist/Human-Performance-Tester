@@ -37,8 +37,18 @@ textarea {
     max-height: 500px;
 }
 
-input {
+input,
+select {
     font-size: 18px;
+}
+
+select {
+    padding: 10px;
+}
+
+option {
+    padding: 50px;
+    display: block;
 }
 
 input[type=checkbox] {
@@ -61,6 +71,7 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: var(--color-purple-1);
 }
+
 
 .checkbox-container {
     gap: 10px;

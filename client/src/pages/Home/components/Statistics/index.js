@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
+import { get } from "../../../../services/axios";
 import "./style.css";
-import { get } from "../../services/axios";
-
 
 const Statistics = () => {
     const [profileCount, setProfileCount] = useState(null);
