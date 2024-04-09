@@ -16,12 +16,17 @@ const RoomList = ({ rooms }) => {
         socket.emit("room:join", {
             roomID: roomID,
             profile: profile
-        }, success => {
-            if (success) {
+        }, data => {
+            if (data.success) {
                 navigate(`/room/${roomID}`);
                 setFlash({
-                    message: "Successfully joined room!",
+                    message: data.message,
                     category: category.success
+                });
+            } else {
+                setFlash({
+                    message: data.message,
+                    category: category.error
                 });
             }
         });

@@ -61,9 +61,9 @@ const category = {
         name: "Error",
         class: "error"
     }
-}
+};
 
 export default Flash;
 export {
     category
-}
+};

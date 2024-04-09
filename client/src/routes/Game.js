@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useParams } from "react-router-dom";
+import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 import { useSocket } from "../hooks/SocketProvider";
 import { useEffect } from "react";
 import { useAuth } from "../hooks/AuthProvider";
@@ -17,13 +17,11 @@ const Game = () => {
             socket.emit("room:join", {
                 roomID: id,
                 profile: profile
-            }, success => {
-                if (success) {
-                    setFlash({
-                        message: "Successfully joined room!",
-                        category: category.success
-                    });
-                }
+            }, data => {
+                setFlash({
+                    message: data.message,
+                    category: data.success ? category.success : category.error
+                });
             });
         }
     }, [loadingRoom, loadingProfile]);

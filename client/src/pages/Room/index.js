@@ -48,8 +48,8 @@ const Room = () => {
 
         navigator.clipboard.writeText(URL);
         setFlash({
-            message: `Copied room URL to clipboard!`,
-            category: category.success
+            message: "Copied room URL to clipboard!",
+            category: category.info
         });
     };
 
@@ -64,7 +64,7 @@ const Room = () => {
                 <RoomComponent />
                 <div className="button-container">
                     <button onClick={copyURL}>
-                        <i class="fa-solid fa-copy" /> Copy URL
+                        <i className="fa-solid fa-copy" /> Copy URL
                     </button>
                     <button className="red" onClick={leave}>
                         Leave
