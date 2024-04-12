@@ -3,7 +3,7 @@ import { useFlash } from "../../hooks/FlashProvider";
 import "./style.css";
 
 const Flash = () => {
-    const [animationKey, setAnimationKey] = useState(0);
+    const [key, setKey] = useState(0);
     const { flash, setFlash } = useFlash();
 
     const close = () => {
@@ -15,7 +15,7 @@ const Flash = () => {
             const timer = setTimeout(() => {
                 setFlash(null);
             }, 3000);
-            setAnimationKey(animationKey + 1);
+            setKey(key + 1);
 
             return () => {
                 clearTimeout(timer);
@@ -24,7 +24,7 @@ const Flash = () => {
     }, [flash])
 
     return flash ? (
-        <div key={animationKey} className="flash">
+        <div key={key} className="flash">
             <span id="flash-duration" />
             <div className="flash-container">
                 <div className="flash-content">
@@ -42,7 +42,7 @@ const Flash = () => {
         </div>
     ) : (
         null
-    )
+    );
 };
 
 const category = {

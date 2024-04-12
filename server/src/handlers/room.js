@@ -37,7 +37,7 @@ const roomHandler = (io, socket) => {
         } else {
             callback({
                 success: false,
-                message: "Profile is already in this room!"
+                message: "You are already in a room!"
             });
             console.log(`[Socket] ${socket.id} failed to join ${roomID}!`);
         }

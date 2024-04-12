@@ -11,6 +11,9 @@ const Statistics = () => {
         get("/profile/count")
             .then(response => setProfileCount(response.data))
             .catch(() => setProfileCount(null));
+        get("/stats/count")
+            .then(response => setStatisticsCount(response.data))
+            .catch(() => setProfileCount(null));
     }, []);
 
     return (

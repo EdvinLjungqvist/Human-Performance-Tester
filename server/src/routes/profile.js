@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get("/", verifyToken, getProfile);
 
-router.get("/count", getProfileCount);
-
 router.delete("/", verifyToken, deleteProfile);
+
+router.get("/count", getProfileCount);
 
 module.exports = router;

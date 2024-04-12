@@ -44,7 +44,7 @@ const Home = () => {
                 </section>
             </article>
         </>
-    )
+    );
 };
 
 export default Home;

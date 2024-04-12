@@ -84,7 +84,7 @@ const Gallery = () => {
                 </div>
             </Link>
         </article >
-    )
-}
+    );
+};
 
 export default Gallery;

@@ -4,7 +4,7 @@ const { hash } = require("bcrypt");
 const StatusError = require("../utils/StatusError");
 
 const getAuth = (req, res) => {
-    res.status(204).end();
+    res.status(200).end();
 };
 
 const signup = (req, res, next) => {
@@ -16,7 +16,6 @@ const signup = (req, res, next) => {
 
             connection.query(sql, [username, hash, born], (err, result) => {
                 if (err) {
-                    console.log(err);
                     return next(new StatusError("Internal Server Error", 500));
                 }
                 res.status(200).end();

@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <header className={menuActive ? "active" : ""}>
             <nav>
-                <NavLink to="/" id="logo-container">
+                <NavLink to="/" id="logo-container" onClick={toggleMenuActive}>
                     <img src={logo} alt="Logo" id="logo" />
                 </NavLink>
                 <ul id="nav-list" className={menuActive ? "active" : ""}>
@@ -67,7 +67,7 @@ const Header = () => {
                 </button>
             </nav>
         </header>
-    )
+    );
 };
 
 export default Header;

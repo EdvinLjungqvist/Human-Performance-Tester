@@ -21,7 +21,7 @@ const Gallery = () => {
                 <GalleryComponent />
             </section>
         </>
-    )
-}
+    );
+};
 
 export default Gallery;
