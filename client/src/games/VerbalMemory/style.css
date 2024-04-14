@@ -1,0 +1,15 @@
+.verbal-memory {
+    padding: 50px 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-2);
+}
+
+.verbal-memory.correct {
+    background-color: var(--color-green-0);
+}
+
+.verbal-memory.incorrect {
+    background-color: var(--color-red-0);
+}

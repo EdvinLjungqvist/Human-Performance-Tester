@@ -5,6 +5,7 @@ import Lobby from "../../routes/Lobby";
 import Game from "../../routes/Game";
 import Home from "../../pages/Home";
 import Gallery from "../../pages/Gallery";
+import VerbalMemory from "../../pages/Gallery/VerbalMemory";
 import Profile from "../../pages/Profile";
 import Rooms from "../../pages/Rooms";
 import Room from "../../pages/Room";
@@ -12,13 +13,18 @@ import Signup from "../../pages/Signup";
 import Signin from "../../pages/Signin";
 import NotFound from "../../pages/NotFound";
 import "./style.css";
+import Statistics from "../../pages/Statistics";
 
 const Main = () => {
     return (
         <main>
             <Routes>
                 <Route index element={<Home />} />
-                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/statistics" element={<Statistics />} />
+                <Route path="/gallery">
+                    <Route index element={<Gallery />} />
+                    <Route path="verbal-memory" element={<VerbalMemory />} />
+                </Route>
                 <Route element={<Private />}>
                     <Route path="/profile" element={<Profile />} />
                     <Route element={<Lobby />}>

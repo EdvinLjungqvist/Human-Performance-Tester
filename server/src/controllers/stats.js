@@ -15,7 +15,7 @@ const createVerbalMemoryStats = (req, res, next) => {
 };
 
 const getVerbalMemoryStats = (req, res, next) => {
-    const sql = "SELECT AVG(score) as average, MAX(score) as max FROM stats_verbal_memory WHERE profile_id = ?";
+    const sql = "SELECT AVG(score) AS average, MAX(score) AS max FROM stats_verbal_memory WHERE profile_id = ?";
     const profileID = req.profileID;
 
     connection.query(sql, [profileID], (err, result) => {
@@ -27,7 +27,7 @@ const getVerbalMemoryStats = (req, res, next) => {
 };
 
 const getAllVerbalMemoryStats = (req, res, next) => {
-    const sql = "SELECT AVG(score) as average, MAX(score) as max FROM stats_verbal_memory";
+    const sql = "SELECT AVG(score) AS average, MAX(score) AS max FROM stats_verbal_memory";
 
     connection.query(sql, [], (err, result) => {
         if (err) {
@@ -38,7 +38,7 @@ const getAllVerbalMemoryStats = (req, res, next) => {
 };
 
 const getStatsCount = (req, res, next) => {
-    const sql = "SELECT COUNT(id) as count FROM stats_verbal_memory";
+    const sql = "SELECT COUNT(id) AS count FROM stats_verbal_memory";
 
     connection.query(sql, [], (err, result) => {
         if (err) {
