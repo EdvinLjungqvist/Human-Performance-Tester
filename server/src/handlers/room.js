@@ -72,7 +72,7 @@ const roomHandler = (io, socket) => {
         } else {
             callback({
                 success: false,
-                message: "You are already in a room!"
+                message: "You are not in a room!"
             });
         }
     };
@@ -88,7 +88,7 @@ const roomHandler = (io, socket) => {
     socket.on("disconnect", disconnect);
 };
 
-const hasProfile = (profileID) => {
+const hasProfile = profileID => {
     for (const room of rooms.values()) {
         for (const player of room.players) {
             if (player.profile.id === profileID) {

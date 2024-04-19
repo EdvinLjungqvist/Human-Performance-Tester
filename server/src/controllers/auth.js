@@ -27,10 +27,7 @@ const signin = (req, res) => {
     const profileID = req.profileID;
     const token = sign({ profileID: profileID }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
 
-    res.cookie("token", token, {
-        sameSite: "none",
-        secure: true
-    }).end();
+    res.cookie("token", token).end();
 };
 
 const signout = (req, res) => {

@@ -6,8 +6,6 @@ const PlayerList = () => {
     const { profile } = useAuth();
     const { room } = useSocket();
 
-    console.log(room)
-
     return (
         <ul className="player-list">
             {room && room.players.map((player, index) => (

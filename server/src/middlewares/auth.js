@@ -78,7 +78,7 @@ const validateCredentials = (req, res, next) => {
         return next(new StatusError(`Password must contain between ${minPasswordLength} to ${maxPasswordLength} characters`, 400));
     }
     if (born > new Date().getFullYear()) {
-        return next(new StatusError("Born year cannot be higher than current year"));
+        return next(new StatusError("Born must be less or equal to current year"));
     }
     next();
 };

@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import words from "../../data/words.json";
-import { get, post } from "../../services/axios";
+import { post } from "../../services/axios";
 import "./style.css";
+import { useSocket } from "../../hooks/SocketProvider";
 
-const VerbalMemory = () => {
+const VerbalMemory = (multiplayer) => {
     const [state, setState] = useState(0);
     const [word, setWord] = useState(null);
     const [seenWords, setSeenWords] = useState([]);
     const [score, setScore] = useState(0);
-    const [stats, setStats] = useState(null);
-    const [allStats, setAllStats] = useState(null);
-
-    useEffect(() => {
-        fetchStats();
-    }, []);
+    const { socket } = useSocket();
 
     useEffect(() => {
         if (state === 1) {
@@ -26,18 +22,8 @@ const VerbalMemory = () => {
                     .then(response => console.log(response))
                     .catch(reason => console.error(reason));
             }
-            fetchStats();
         }
     }, [state]);
-
-    const fetchStats = () => {
-        get("/stats/verbal-memory")
-            .then(response => setStats(response.data))
-            .catch(() => setStats(null));
-        get("/stats/verbal-memory/all")
-            .then(response => setAllStats(response.data))
-            .catch(() => setAllStats(null));
-    };
 
     const generateWord = () => {
         setWord(seenWords.length > 0 && Math.random() < 0.5 ? seenWords[Math.floor(Math.random() * seenWords.length)] : words[Math.floor(Math.random() * words.length)]);
@@ -50,6 +36,10 @@ const VerbalMemory = () => {
 
         if (correct) {
             setScore(score + 1);
+            
+            if (multiplayer) {
+                socket.emit("game:score", score + 1);
+            }
         } else {
             setState(2);
         }
@@ -109,36 +99,6 @@ const VerbalMemory = () => {
                     </>
                 )}
             </div>
-            {stats && (
-                <>
-                    <h3>
-                        Personal statistics:
-                    </h3>
-                    <ul>
-                        <li>
-                            Average score: <span className="text-highlight">{Math.floor(stats.average)}</span>
-                        </li>
-                        <li>
-                            Best score: <span className="text-highlight">{stats.max}</span>
-                        </li>
-                    </ul>
-                </>
-            )}
-            {allStats && (
-                <>
-                    <h3>
-                        General statistics:
-                    </h3>
-                    <ul>
-                        <li>
-                            Average score: <span className="text-highlight">{Math.floor(allStats.average)}</span>
-                        </li>
-                        <li>
-                            Best score: <span className="text-highlight">{allStats.max}</span>
-                        </li>
-                    </ul>
-                </>
-            )}
         </div>
     );
 };

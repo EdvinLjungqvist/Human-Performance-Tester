@@ -59,6 +59,10 @@
     font-weight: 800;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .role {
     font-weight: 800;
     text-transform: capitalize;

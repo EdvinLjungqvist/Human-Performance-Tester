@@ -1,18 +1,39 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Form from "../../../../components/Form";
 import { useSocket } from "../../../../hooks/SocketProvider";
+import { useFlash } from "../../../../hooks/FlashProvider";
+import { category } from "../../../../components/Flash";
 import "./style.css";
 
 const Menu = () => {
-    const game = useRef();
-    const { socket } = useSocket();
+    const gameSelector = useRef();
+    const { socket, room } = useSocket();
+    const { setFlash } = useFlash();
+
+    useEffect(() => {
+        const onStartGame = ({ success, message }) => {
+            setFlash({
+                message: message,
+                category: success ? category.info : category.error
+            });
+        };
+
+        socket.on("game:start", onStartGame);
+
+        return () => {
+            socket.off("game:start", onStartGame);
+        };
+    }, []);
 
     const start = e => {
         e.preventDefault();
 
-        socket.emit("game:start", game.current.value, success => {
-            if (success) {
-                
+        socket.emit("game:start", gameSelector.current.value, ({ success, message }) => {
+            if (!success) {
+                setFlash({
+                    message: message,
+                    category: category.error
+                });
             }
         });
     };
@@ -25,16 +46,22 @@ const Menu = () => {
                         Main menu
                     </h2>
                 </div>
-                <Form onSubmit={start}>
-                    <label>
-                        Select a game
-                        <select ref={game} name="game-types">
-                            <option value="verbal-memory">Verbal memory</option>
-                            <option value="reaction-time">Reaction time</option>
-                        </select>
-                    </label>
-                    <input type="submit" value="Start" />
-                </Form>
+                {room.hostID === socket.id ? (
+                    <Form onSubmit={start}>
+                        <label>
+                            Select a game
+                            <select ref={gameSelector} name="game-types">
+                                <option value="verbal-memory">Verbal memory</option>
+                                <option value="reaction-time">Reaction time</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="Start" />
+                    </Form>
+                ) : (
+                    <p className="text-center">
+                        Waiting for host to start...
+                    </p>
+                )}
             </div>
         </div>
     );
