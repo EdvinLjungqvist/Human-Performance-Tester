@@ -1,54 +1,131 @@
 import { useEffect, useState } from "react";
 import VerbalMemoryGame from "../../../games/VerbalMemory";
 import { get } from "../../../services/axios";
+import Table from "../../../components/Table";
+import { useAuth } from "../../../hooks/AuthProvider";
 
 const VerbalMemory = () => {
-    const [stats, setStats] = useState(null);
-    const [allStats, setAllStats] = useState(null);
+    const [stats, setStats] = useState([]);
+    const [leaderboard, setLeaderboard] = useState([]);
+    const { profile } = useAuth();
 
     useEffect(() => {
         const fetchStats = () => {
             get("/stats/verbal-memory")
                 .then(response => setStats(response.data))
-                .catch(() => setStats(null));
-            get("/stats/verbal-memory/all")
-                .then(response => setAllStats(response.data))
-                .catch(() => setAllStats(null));
+                .catch(() => setStats([]));
+            get("/stats/verbal-memory/global")
+                .then(async response => {
+                    const leaderboard = response.data;
+
+                    for (const stat of leaderboard) {
+                        await get(`/profile/${stat.profile_id}`)
+                            .then(response => {
+                                delete stat.profile_id;
+                                stat.profile = response.data;
+                            })
+                            .catch(reason => console.error(reason.message));
+                    }
+                    setLeaderboard(leaderboard);
+                })
+                .catch(() => setLeaderboard([]));
         };
         fetchStats();
     }, []);
+
+    console.log(leaderboard);
 
     return (
         <div className="content-container">
             <VerbalMemoryGame />
             {stats && (
                 <>
-                    <h3>
-                        Personal statistics:
-                    </h3>
-                    <ul>
-                        <li>
-                            Average score: <span className="text-highlight">{Math.floor(stats.average)}</span>
-                        </li>
-                        <li>
-                            Best score: <span className="text-highlight">{stats.max}</span>
-                        </li>
-                    </ul>
+                    <div className="title-container">
+                        <h2>
+                            Personal best
+                        </h2>
+                        <p>
+                            See your best attempts below!
+                        </p>
+                    </div>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Score
+                                </th>
+                                <th>
+                                    Timestamp
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {leaderboard.map((stat, index) => (
+                                <tr key={index}>
+                                    <td className="table-number">
+                                        {index + 1}
+                                    </td>
+                                    <td>
+                                        {stat.score}
+                                    </td>
+                                    <td>
+                                        {new Date(stat.timestamp).toDateString()}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
                 </>
             )}
-            {allStats && (
+            {leaderboard && (
                 <>
-                    <h3>
-                        General statistics:
-                    </h3>
-                    <ul>
-                        <li>
-                            Average score: <span className="text-highlight">{Math.floor(allStats.average)}</span>
-                        </li>
-                        <li>
-                            Best score: <span className="text-highlight">{allStats.max}</span>
-                        </li>
-                    </ul>
+                    <div className="title-container">
+                        <h2>
+                            Global leaderboard
+                        </h2>
+                        <p>
+                            Here are the best attempts globally!
+                        </p>
+                    </div>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Score
+                                </th>
+                                <th>
+                                    Profile
+                                </th>
+                                <th>
+                                    Timestamp
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {leaderboard.map((stat, index) => (
+                                <tr key={index}>
+                                    <td className="table-number">
+                                        {index + 1}
+                                    </td>
+                                    <td>
+                                        {stat.score}
+                                    </td>
+                                    <td>
+                                        <span className={`role ${stat.profile.role}`}>{stat.profile.role}</span> {stat.profile.username} {profile && profile.id === stat.profile.id && "(You)"}
+                                    </td>
+                                    <td>
+                                        {new Date(stat.timestamp).toDateString()}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
                 </>
             )}
         </div>

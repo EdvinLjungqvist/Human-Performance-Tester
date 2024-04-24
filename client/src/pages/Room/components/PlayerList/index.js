@@ -13,8 +13,8 @@ const PlayerList = () => {
                     <p className="player-list-text">
                         <span className={`role ${player.profile.role}`}>{player.profile.role}</span> {player.profile.username} {profile && player.profile.id === profile.id ? "(You)" : ""}
                     </p>
-                    <p className="text-highlight">
-                        {player.score}
+                    <p>
+                        Best: <span className="text-highlight">{player.score}</span>
                     </p>
                 </li>
             ))}

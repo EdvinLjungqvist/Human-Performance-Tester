@@ -27,10 +27,16 @@ const Signin = () => {
                     category: category.success
                 });
             })
-            .catch(reason => setFlash({
-                message: reason.response.data.message,
-                category: category.error
-            }))
+            .catch(reason => {
+                if (reason.response) {
+                    setFlash({
+                        message: reason.response.data.message,
+                        category: category.error
+                    });
+                } else {
+                    console.error(reason.message);
+                }
+            })
             .finally(() => setLoading(null));
     };
 

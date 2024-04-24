@@ -43,9 +43,11 @@ const AuthProvider = ({ children }) => {
 
     const value = {
         loadingAuth,
+        setLoadingAuth,
         auth,
         setAuth,
         loadingProfile,
+        setLoadingProfile,
         profile,
         setProfile
     };

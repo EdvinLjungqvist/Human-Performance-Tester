@@ -57,7 +57,7 @@ const Room = () => {
         <>
             <Helmet>
                 <title>
-                    {room.id} | Human Performance Tester
+                    Room {room.id} | Human Performance Tester
                 </title>
             </Helmet>
             <div className="content-container">

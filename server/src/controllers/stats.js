@@ -15,27 +15,28 @@ const createVerbalMemoryStats = (req, res, next) => {
 };
 
 const getVerbalMemoryStats = (req, res, next) => {
-    const sql = "SELECT AVG(score) AS average, MAX(score) AS max FROM stats_verbal_memory WHERE profile_id = ?";
     const profileID = req.profileID;
+    const sql = "SELECT id, score, timestamp FROM stats_verbal_memory WHERE profile_id = ? ORDER BY score DESC LIMIT 10";
 
     connection.query(sql, [profileID], (err, result) => {
         if (err) {
             return next(new StatusError("Internal Server Error", 500));
         }
-        res.json(result[0]);
+        res.json(result);
     });
 };
 
-const getAllVerbalMemoryStats = (req, res, next) => {
-    const sql = "SELECT AVG(score) AS average, MAX(score) AS max FROM stats_verbal_memory";
+const getVerbalMemoryStatsGlobal = (req, res, next) => {
+    const sql = "SELECT id, profile_id, score, timestamp FROM stats_verbal_memory ORDER BY score DESC LIMIT 10";
 
     connection.query(sql, [], (err, result) => {
         if (err) {
+            console.log(err)
             return next(new StatusError("Internal Server Error", 500));
         }
-        res.json(result[0]);
-    });
-};
+        res.json(result);
+    })
+}
 
 const getStatsCount = (req, res, next) => {
     const sql = "SELECT COUNT(id) AS count FROM stats_verbal_memory";
@@ -51,6 +52,6 @@ const getStatsCount = (req, res, next) => {
 module.exports = {
     createVerbalMemoryStats,
     getVerbalMemoryStats,
-    getAllVerbalMemoryStats,
+    getVerbalMemoryStatsGlobal,
     getStatsCount
 };

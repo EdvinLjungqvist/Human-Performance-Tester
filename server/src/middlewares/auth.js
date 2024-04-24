@@ -28,7 +28,7 @@ const verifySignup = (req, res, next) => {
         if (result.length > 0) {
             return next(new StatusError("Username is already taken", 400));
         }
-        next()
+        next();
     });
 };
 

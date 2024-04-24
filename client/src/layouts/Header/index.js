@@ -57,7 +57,7 @@ const Header = () => {
                     ) : (
                         <li className="nav-item">
                             <NavLink to="/signin" className="nav-link signin" activeclassname="active" end onClick={toggleMenuActive}>
-                                Signin
+                                Sign in
                             </NavLink>
                         </li>
                     )}

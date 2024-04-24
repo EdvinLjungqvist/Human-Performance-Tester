@@ -19,8 +19,7 @@ const VerbalMemory = (multiplayer) => {
         } else if (state === 2) {
             if (score > 0) {
                 post("/stats/verbal-memory", { score: score })
-                    .then(response => console.log(response))
-                    .catch(reason => console.error(reason));
+                    .catch(reason => console.error(reason.message));
             }
         }
     }, [state]);
@@ -60,9 +59,9 @@ const VerbalMemory = (multiplayer) => {
                 {state === 0 ? (
                     <>
                         <div className="title-container">
-                            <h1>
+                            <h2>
                                 Verbal memory
-                            </h1>
+                            </h2>
                         </div>
                         <div className="button-container">
                             <button className="green" onClick={() => setState(1)}>
@@ -73,7 +72,7 @@ const VerbalMemory = (multiplayer) => {
                 ) : state === 1 ? (
                     <>
                         <div className="title-container">
-                            <h1>{word ? word : "?"}</h1>
+                            <h2>{word ? word : "?"}</h2>
                             <p>Score: {score}</p>
                         </div>
                         <div className="button-container">
@@ -88,7 +87,7 @@ const VerbalMemory = (multiplayer) => {
                 ) : (
                     <>
                         <div className="title-container">
-                            <h1>You failed!</h1>
+                            <h2>You failed!</h2>
                             <p>Score: {score}</p>
                         </div>
                         <div className="button-container">

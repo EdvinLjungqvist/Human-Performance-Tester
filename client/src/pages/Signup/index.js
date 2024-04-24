@@ -6,11 +6,13 @@ import { post } from "../../services/axios";
 import { useLoading } from "../../hooks/LoadingProvider";
 import { useFlash } from "../../hooks/FlashProvider";
 import { category } from "../../components/Flash";
+import { useAuth } from "../../hooks/AuthProvider";
 
 const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [born, setBorn] = useState(null);
+    const { setAuth } = useAuth();
     const { setLoading } = useLoading();
     const { setFlash } = useFlash();
 
@@ -22,16 +24,23 @@ const Signup = () => {
         setLoading("Signing up...")
         post("/auth/signup", { username, password, born })
             .then(() => {
-                navigate("/signin");
+                setAuth(true);
+                navigate("/profile");
                 setFlash({
                     message: "Successfully signed up!",
                     category: category.success
                 });
             })
-            .catch(reason => setFlash({
-                message: reason.response.data.message,
-                category: category.error
-            }))
+            .catch(reason => {
+                if (reason.response) {
+                    setFlash({
+                        message: reason.response.data.message,
+                        category: category.error
+                    });
+                } else {
+                    console.error(reason.message);
+                }
+            })
             .finally(() => setLoading(null));
     };
 

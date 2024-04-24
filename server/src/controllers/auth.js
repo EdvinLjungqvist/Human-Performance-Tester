@@ -18,7 +18,10 @@ const signup = (req, res, next) => {
                 if (err) {
                     return next(new StatusError("Internal Server Error", 500));
                 }
-                res.status(200).end();
+                const profileID = result.insertId;
+                const token = sign({ profileID: profileID }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
+
+                res.cookie("token", token).end();
             });
         });
 };

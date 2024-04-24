@@ -12,8 +12,9 @@ import Room from "../../pages/Room";
 import Signup from "../../pages/Signup";
 import Signin from "../../pages/Signin";
 import NotFound from "../../pages/NotFound";
-import "./style.css";
 import Statistics from "../../pages/Statistics";
+import Update from "../../pages/Profile/Update";
+import "./style.css";
 
 const Main = () => {
     return (
@@ -26,7 +27,10 @@ const Main = () => {
                     <Route path="verbal-memory" element={<VerbalMemory />} />
                 </Route>
                 <Route element={<Private />}>
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile">
+                        <Route index element={<Profile />} />
+                        <Route path="update" element={<Update />} />
+                    </Route>
                     <Route element={<Lobby />}>
                         <Route path="/rooms" element={<Rooms />} />
                     </Route>
