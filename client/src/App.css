@@ -3,9 +3,12 @@
 }
 
 .title-container,
-.content-container,
-.button-container {
+.content-container {
     display: grid;
+}
+
+.button-container {
+    display: flex;
 }
 
 .title-container {
@@ -20,7 +23,7 @@
 
 .button-container {
     gap: 10px;
-    grid-auto-flow: column;
+    flex-wrap: wrap;
     justify-content: center;
 }
 

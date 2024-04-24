@@ -104,7 +104,7 @@ const Profile = () => {
                                 Sign out
                             </button>
                             <button className="red" onClick={removeProfile}>
-                                Remove
+                                Delete
                             </button>
                         </div>
                     </>

@@ -45,12 +45,20 @@ const Room = () => {
 
     const copyURL = () => {
         const URL = document.location.href;
+        const clipboard = navigator.clipboard;
 
-        navigator.clipboard.writeText(URL);
-        setFlash({
-            message: "Copied room URL to clipboard!",
-            category: category.info
-        });
+        if (clipboard) {
+            clipboard.writeText(URL);
+            setFlash({
+                message: "Copied room URL to clipboard!",
+                category: category.info
+            });
+        } else {
+            setFlash({
+                message: "Failed to copy URL to clipboard!",
+                category: category.error
+            });
+        }
     };
 
     return (

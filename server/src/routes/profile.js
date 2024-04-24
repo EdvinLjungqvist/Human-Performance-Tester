@@ -7,12 +7,12 @@ const router = express.Router();
 
 router.get("/", verifyToken, getProfile);
 
+router.get("/count", getProfileCount);
+
 router.get("/:id", getProfileByID);
 
 router.post("/update", verifyToken, validateCredentials, verifyUpdate, updateProfile);
 
 router.delete("/", verifyToken, deleteProfile);
-
-router.get("/count", getProfileCount);
 
 module.exports = router;
