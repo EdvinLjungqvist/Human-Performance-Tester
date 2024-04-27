@@ -5,15 +5,15 @@ import Table from "../../../components/Table";
 import { useAuth } from "../../../hooks/AuthProvider";
 
 const VerbalMemory = () => {
-    const [stats, setStats] = useState([]);
-    const [leaderboard, setLeaderboard] = useState([]);
+    const [stats, setStats] = useState(null);
+    const [leaderboard, setLeaderboard] = useState(null);
     const { profile } = useAuth();
 
     useEffect(() => {
         const fetchStats = () => {
             get("/stats/verbal-memory")
                 .then(response => setStats(response.data))
-                .catch(() => setStats([]));
+                .catch(() => setStats(null));
             get("/stats/verbal-memory/global")
                 .then(async response => {
                     const leaderboard = response.data;
@@ -28,12 +28,10 @@ const VerbalMemory = () => {
                     }
                     setLeaderboard(leaderboard);
                 })
-                .catch(() => setLeaderboard([]));
+                .catch(() => setLeaderboard(null));
         };
         fetchStats();
     }, []);
-
-    console.log(leaderboard);
 
     return (
         <div className="content-container">
@@ -52,9 +50,6 @@ const VerbalMemory = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    #
-                                </th>
-                                <th>
                                     Score
                                 </th>
                                 <th>
@@ -63,11 +58,8 @@ const VerbalMemory = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {leaderboard.map((stat, index) => (
+                            {stats.map((stat, index) => (
                                 <tr key={index}>
-                                    <td className="table-number">
-                                        {index + 1}
-                                    </td>
                                     <td>
                                         {stat.score}
                                     </td>
@@ -94,9 +86,6 @@ const VerbalMemory = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    #
-                                </th>
-                                <th>
                                     Score
                                 </th>
                                 <th>
@@ -110,9 +99,6 @@ const VerbalMemory = () => {
                         <tbody>
                             {leaderboard.map((stat, index) => (
                                 <tr key={index}>
-                                    <td className="table-number">
-                                        {index + 1}
-                                    </td>
                                     <td>
                                         {stat.score}
                                     </td>

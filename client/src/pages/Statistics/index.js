@@ -1,9 +1,10 @@
 const Statistics = () => {
     return (
-        <h1>
-            Dart.js
-        </h1>
+        <div>
+            <h1>Statistics</h1>
+        </div>
     );
+
 };
 
 export default Statistics;

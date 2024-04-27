@@ -62,23 +62,41 @@ const verifySignin = (req, res, next) => {
 const usernameRegex = /^[a-zA-Z0-9_]+$/;
 const minUsernameLength = 3;
 const maxUsernameLength = 16;
-const minPasswordLength = 6;
-const maxPasswordLength = 128;
 
-const validateCredentials = (req, res, next) => {
-    const { username, password, born } = req.body;
+const validateUsername = (req, res, next) => {
+    const { username } = req.body;
 
-    if (!(username.length >= minUsernameLength && username.length <= maxUsernameLength)) {
+    if (username.length < minUsernameLength || username.length > maxUsernameLength) {
         return next(new StatusError(`Username must contain between ${minUsernameLength} to ${maxUsernameLength} characters`, 400));
     }
     if (!usernameRegex.test(username)) {
         return next(new StatusError("Username can only contain letters, numbers, and underscores", 400));
     }
+    next();
+};
+
+const minPasswordLength = 6;
+const maxPasswordLength = 128;
+
+const validatePassword = (req, res, next) => {
+    const { password } = req.body;
+
     if (!(password.length >= minPasswordLength && password.length <= maxPasswordLength)) {
         return next(new StatusError(`Password must contain between ${minPasswordLength} to ${maxPasswordLength} characters`, 400));
     }
-    if (born > new Date().getFullYear()) {
-        return next(new StatusError("Born must be less or equal to current year"));
+    next();
+};
+
+const validateBorn = (req, res, next) => {
+    const { born } = req.body;
+    const minYear = 1901;
+    const maxYear = new Date().getFullYear();
+
+    if (born < minYear) {
+        return next(new StatusError(`Born must be greater or equal to ${minYear}`));
+    }
+    if (born > maxYear) {
+        return next(new StatusError(`Born must be less or equal to ${maxYear}`));
     }
     next();
 };
@@ -88,5 +106,7 @@ module.exports = {
     verifyToken,
     verifySignup,
     verifySignin,
-    validateCredentials
+    validateUsername,
+    validatePassword,
+    validateBorn
 };

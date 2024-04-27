@@ -29,10 +29,6 @@ tr:nth-child(2n) {
     background-color: var(--color-background-0);
 }
 
-.table-number {
-    color: var(--color-text-0);
-}
-
 @media (min-width: 768px) {
     table {
         width: 60%;

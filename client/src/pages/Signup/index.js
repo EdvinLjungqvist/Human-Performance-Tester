@@ -71,7 +71,7 @@ const Signup = () => {
                     </label>
                     <label>
                         Born
-                        <input type="number" min={new Date().getFullYear() - 200} max={new Date().getFullYear()} placeholder="YYYY" required onChange={(e) => setBorn(e.target.value)} />
+                        <input type="number" min={1901} max={new Date().getFullYear()} placeholder="YYYY" required onChange={(e) => setBorn(e.target.value)} />
                     </label>
                     <label className="checkbox-container">
                         <input type="checkbox" required />

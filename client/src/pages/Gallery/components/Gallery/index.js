@@ -23,7 +23,7 @@ const Gallery = () => {
                     <img src={image} alt="image" />
                     <div className="gallery-content">
                         <h3 className="gallery-title">
-                            Reaction time
+                            Coming soon...
                         </h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -36,7 +36,7 @@ const Gallery = () => {
                     <img src={image} alt="image" />
                     <div className="gallery-content">
                         <h3 className="gallery-title">
-                            Typing speed
+                            Coming soon...
                         </h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

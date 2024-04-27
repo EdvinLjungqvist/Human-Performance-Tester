@@ -2,9 +2,9 @@ import Menu from "../Menu";
 import VerbalMemory from "../../../../games/VerbalMemory";
 import { useEffect, useState } from "react";
 import { useSocket } from "../../../../hooks/SocketProvider";
-import "./style.css";
 import { useFlash } from "../../../../hooks/FlashProvider";
 import { category } from "../../../../components/Flash";
+import "./style.css";
 
 const Room = () => {
     const [game, setGame] = useState(null);

@@ -52,7 +52,6 @@ const Menu = () => {
                             Select a game
                             <select ref={gameSelector} name="game-types">
                                 <option value="verbal-memory">Verbal memory</option>
-                                <option value="reaction-time">Reaction time</option>
                             </select>
                         </label>
                         <input type="submit" value="Start" />
