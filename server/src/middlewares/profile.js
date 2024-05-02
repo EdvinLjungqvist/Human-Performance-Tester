@@ -3,7 +3,7 @@ const StatusError = require("../utils/StatusError");
 
 const verifyUsername = (req, res, next) => {
     const { username } = req.body;
-    const sql = "SELECT id FROM profiles WHERE username = ?";
+    const sql = "SELECT id FROM profiles WHERE username = ?;";
 
     connection.query(sql, [username], (error, result) => {
         if (error) {

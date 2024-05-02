@@ -12,7 +12,7 @@ const signup = (req, res, next) => {
 
     hash(password, 10)
         .then(hash => {
-            const sql = "INSERT INTO profiles (username, password, born) VALUES (?, ?, ?)";
+            const sql = "INSERT INTO profiles (username, password, born) VALUES (?, ?, ?);";
 
             connection.query(sql, [username, hash, born], (err, result) => {
                 if (err) {

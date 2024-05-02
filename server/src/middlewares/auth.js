@@ -19,7 +19,7 @@ const verifyToken = (req, res, next) => {
 
 const verifySignup = (req, res, next) => {
     const { username } = req.body;
-    const sql = "SELECT * FROM profiles WHERE username = ?";
+    const sql = "SELECT * FROM profiles WHERE username = ?;";
 
     connection.query(sql, [username], (error, result) => {
         if (error) {
@@ -34,7 +34,7 @@ const verifySignup = (req, res, next) => {
 
 const verifySignin = (req, res, next) => {
     const { username, password } = req.body;
-    const sql = "SELECT id, password FROM profiles WHERE username = ?";
+    const sql = "SELECT id, password FROM profiles WHERE username = ?;";
 
     connection.query(sql, [username], (err, result) => {
         if (err) {

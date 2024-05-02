@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/", verifyToken, getProfile);
 
+router.delete("/", verifyToken, deleteProfile);
+
 router.get("/count", getProfileCount);
 
 router.get("/:id", getProfileByID);
@@ -16,7 +18,5 @@ router.post("/update-username", verifyToken, validateUsername, verifyUsername, u
 router.post("/update-password", verifyToken, validatePassword, updatePassword);
 
 router.post("/update-born", verifyToken, validateBorn, updateBorn);
-
-router.delete("/", verifyToken, deleteProfile);
 
 module.exports = router;

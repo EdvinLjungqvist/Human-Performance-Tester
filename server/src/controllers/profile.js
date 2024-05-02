@@ -4,7 +4,7 @@ const StatusError = require("../utils/StatusError");
 
 const getProfile = (req, res, next) => {
     const profileID = req.profileID;
-    const sql = "SELECT id, username, born, role, timestamp FROM profiles WHERE id = ?";
+    const sql = "SELECT id, username, born, role, timestamp FROM profiles WHERE id = ?;";
 
     connection.query(sql, [profileID], (err, result) => {
         if (err) {
@@ -19,7 +19,7 @@ const getProfile = (req, res, next) => {
 
 const getProfileByID = (req, res, next) => {
     const { id } = req.params;
-    const sql = "SELECT id, username, role, timestamp FROM profiles WHERE id = ?";
+    const sql = "SELECT id, username, role, timestamp FROM profiles WHERE id = ?;";
 
     connection.query(sql, [id], (err, result) => {
         if (err) {
@@ -36,7 +36,7 @@ const updateUsername = (req, res, next) => {
     const { username } = req.body;
     const profileID = req.profileID;
 
-    const sql = "UPDATE profiles SET username = ? WHERE id = ?"
+    const sql = "UPDATE profiles SET username = ? WHERE id = ?;"
 
     connection.query(sql, [username, profileID], (err, result) => {
         if (err) {
@@ -52,7 +52,7 @@ const updatePassword = (req, res, next) => {
 
     hash(password, 10)
         .then(hash => {
-            const sql = "UPDATE profiles SET password = ? WHERE id = ?"
+            const sql = "UPDATE profiles SET password = ? WHERE id = ?;"
 
             connection.query(sql, [hash, profileID], (err, result) => {
                 if (err) {
@@ -67,7 +67,7 @@ const updateBorn = (req, res, next) => {
     const { born } = req.body;
     const profileID = req.profileID;
 
-    const sql = "UPDATE profiles SET born = ? WHERE id = ?"
+    const sql = "UPDATE profiles SET born = ? WHERE id = ?;"
 
     connection.query(sql, [born, profileID], (err, result) => {
         if (err) {
@@ -79,7 +79,7 @@ const updateBorn = (req, res, next) => {
 };
 
 const getProfileCount = (req, res) => {
-    const sql = "SELECT COUNT(id) as count FROM profiles";
+    const sql = "SELECT COUNT(id) as count FROM profiles;";
 
     connection.query(sql, [], (err, result) => {
         if (err) {
@@ -91,7 +91,7 @@ const getProfileCount = (req, res) => {
 
 const deleteProfile = (req, res, next) => {
     const profileID = req.profileID;
-    const sql = "DELETE FROM profiles WHERE id = ?";
+    const sql = "DELETE FROM profiles WHERE id = ?;";
 
     connection.query(sql, [profileID], (err, result) => {
         if (err) {

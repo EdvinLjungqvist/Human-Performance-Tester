@@ -14,7 +14,7 @@ const VerbalMemory = () => {
             get("/stats/verbal-memory")
                 .then(response => setStats(response.data))
                 .catch(() => setStats(null));
-            get("/stats/verbal-memory/global")
+            get("/stats/verbal-memory/leaderboard")
                 .then(async response => {
                     const leaderboard = response.data;
 

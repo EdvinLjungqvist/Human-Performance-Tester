@@ -13,7 +13,7 @@ const Gallery = () => {
                             Verbal memory
                         </h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            This test measures how many words you can keep in short term memory at once.
                         </p>
                     </div>
                 </div>
