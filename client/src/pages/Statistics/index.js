@@ -57,7 +57,8 @@ const Statistics = () => {
             legend: {
                 onClick: null
             }
-        }
+        },
+        maintainAspectRatio: false
     };
 
     return (
@@ -77,7 +78,11 @@ const Statistics = () => {
                 <p>
                     Distribution of scores among participants
                 </p>
-                {verbalMemoryData && <Line data={verbalMemoryData} options={options} style={{ width: "100%" }} />}
+                {verbalMemoryData && (
+                    <div style={{ height: "400px" }}>
+                        <Line data={verbalMemoryData} options={options} />
+                    </div>
+                )}
             </div>
         </section>
     );
