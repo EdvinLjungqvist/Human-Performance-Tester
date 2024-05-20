@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import words from "../../data/words.json";
 import { post } from "../../services/axios";
-import "./style.css";
 import { useSocket } from "../../hooks/SocketProvider";
+import "./style.css";
 
-const VerbalMemory = (multiplayer) => {
+const VerbalMemory = multiplayer => {
     const [state, setState] = useState(0);
     const [word, setWord] = useState(null);
     const [seenWords, setSeenWords] = useState([]);

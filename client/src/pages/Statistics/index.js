@@ -25,7 +25,7 @@ const Statistics = () => {
                 const chartData = {
                     labels: scores,
                     datasets: [{
-                        label: "Number of stats",
+                        label: "Number of attempts",
                         data: counts,
                         borderColor: "#f9faff",
                         backgroundColor: "#f9faff",
@@ -43,7 +43,7 @@ const Statistics = () => {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: "Number of stats"
+                    text: "Number of attempts"
                 }
             },
             x: {

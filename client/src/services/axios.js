@@ -20,4 +20,4 @@ export {
     get,
     post,
     remove
-}
+};

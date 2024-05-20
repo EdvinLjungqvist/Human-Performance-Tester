@@ -1,5 +1,5 @@
 const errorLogger = (err, req, res, next) => {
-    console.error(`[Error] ${err.statusCode} - ${err.message}`);
+    console.error(`[Error] ${err.message} (${err.statusCode})`);
     
     next(err);
 };

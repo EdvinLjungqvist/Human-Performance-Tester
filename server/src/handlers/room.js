@@ -78,7 +78,7 @@ const roomHandler = (io, socket) => {
     };
 
     const disconnect = () => {
-        leave(() => { });
+        leave(() => {});
     };
 
     socket.on("room:get", get);
