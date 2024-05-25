@@ -17,7 +17,7 @@ PORT = 5000
 HOST = "localhost"
 
 DB_HOST = "host"
-DB_USER = "root"
+DB_USER = "user"
 DB_DATABASE = "database"
 DB_PASSWORD = "password"
 
