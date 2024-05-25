@@ -5,14 +5,14 @@ A website where users challenges themselves and compete in various tests that me
 Follow the instructions below to set up the project.
 1. Run "npm install" in "/", "/client" and "/server"
 2. Create file named ".env" in "/client" and fill in the following fields:
-```
+```env
 PORT = 3000
 HOST = "localhost"
 
 REACT_APP_API_URL = http://localhost:5000
 ```
 3. Create file named ".env" in "/server" and fill in the following fields:
-```
+```env
 PORT = 5000
 HOST = "localhost"
 
