@@ -5,8 +5,8 @@ const verifyUsername = (req, res, next) => {
     const { username } = req.body;
     const sql = "SELECT id FROM profiles WHERE username = ?;";
 
-    connection.query(sql, [username], (error, result) => {
-        if (error) {
+    connection.query(sql, [username], (err, result) => {
+        if (err) {
             return next(StatusError("Internal Server Error", 500));
         }
         if (result.length > 0) {
