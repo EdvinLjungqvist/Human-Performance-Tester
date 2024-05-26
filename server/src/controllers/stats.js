@@ -29,18 +29,18 @@ const getVerbalMemoryStats = (req, res, next) => {
 const getVerbalMemoryStatsLeaderboard = (req, res, next) => {
     const sql = "SELECT id, profile_id, score, timestamp FROM stats_verbal_memory ORDER BY score DESC LIMIT 10;";
 
-    connection.query(sql, [], (err, result) => {
+    connection.query(sql, (err, result) => {
         if (err) {
             return next(new StatusError("Internal Server Error", 500));
         }
         res.json(result);
-    })
+    });
 };
 
 const getVerbalMemoryStatsAverage = (req, res, next) => {
     const sql = "SELECT score, COUNT(*) AS count FROM stats_verbal_memory GROUP BY score ORDER BY score;";
 
-    connection.query(sql, [], (err, result) => {
+    connection.query(sql, (err, result) => {
         if (err) {
             return next(new StatusError("Internal Server Error", 500));
         }
@@ -51,7 +51,7 @@ const getVerbalMemoryStatsAverage = (req, res, next) => {
 const getStatsCount = (req, res, next) => {
     const sql = "SELECT COUNT(id) AS count FROM stats_verbal_memory;";
 
-    connection.query(sql, [], (err, result) => {
+    connection.query(sql, (err, result) => {
         if (err) {
             return next(new StatusError("Internal Server Error", 500));
         }

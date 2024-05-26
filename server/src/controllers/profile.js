@@ -81,7 +81,7 @@ const updateBorn = (req, res, next) => {
 const getProfileCount = (req, res) => {
     const sql = "SELECT COUNT(id) as count FROM profiles;";
 
-    connection.query(sql, [], (err, result) => {
+    connection.query(sql, (err, result) => {
         if (err) {
             return next(new StatusError("Internal Server Error", 500));
         }
