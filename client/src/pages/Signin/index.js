@@ -33,8 +33,6 @@ const Signin = () => {
                         message: reason.response.data.message,
                         category: category.error
                     });
-                } else {
-                    console.error(reason.message);
                 }
             })
             .finally(() => setLoading(null));

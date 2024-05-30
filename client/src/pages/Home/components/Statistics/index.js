@@ -13,7 +13,7 @@ const Statistics = () => {
             .catch(() => setProfileCount(null));
         get("/stats/count")
             .then(response => setStatisticsCount(response.data))
-            .catch(() => setProfileCount(null));
+            .catch(() => setStatisticsCount(null));
     }, []);
 
     return (
