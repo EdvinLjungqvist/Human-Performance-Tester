@@ -2,6 +2,7 @@ import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { get } from "../../services/axios";
+import { Helmet } from "react-helmet-async";
 
 ChartJS.register(
     LineElement,
@@ -62,29 +63,36 @@ const Statistics = () => {
     };
 
     return (
-        <section className="content-container">
-            <div className="title-container">
-                <h1>
-                    Statistics
-                </h1>
-                <p>
-                    Here you can find different statistics
-                </p>
-            </div>
-            <div className="content-container">
-                <h2>
-                    Verbal memory
-                </h2>
-                <p>
-                    Distribution of scores among participants
-                </p>
-                {verbalMemoryData && (
-                    <div style={{ height: "400px" }}>
-                        <Line data={verbalMemoryData} options={options} />
-                    </div>
-                )}
-            </div>
-        </section>
+        <>
+            <Helmet>
+                <title>
+                    Statistics | Human Performance Tester
+                </title>
+            </Helmet>
+            <section className="content-container">
+                <div className="title-container">
+                    <h1>
+                        Statistics
+                    </h1>
+                    <p>
+                        Here you can find different statistics
+                    </p>
+                </div>
+                <div className="content-container">
+                    <h2>
+                        Verbal memory
+                    </h2>
+                    <p>
+                        Distribution of scores among participants
+                    </p>
+                    {verbalMemoryData && (
+                        <div style={{ height: "400px" }}>
+                            <Line data={verbalMemoryData} options={options} />
+                        </div>
+                    )}
+                </div>
+            </section>
+        </>
     );
 };
 

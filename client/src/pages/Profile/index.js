@@ -48,7 +48,7 @@ const Profile = () => {
         <>
             <Helmet>
                 <title>
-                    Profile {profile ? profile.username : ""} | Human Performance Tester
+                    {profile ? profile.username : ""} | Human Performance Tester
                 </title>
             </Helmet>
             <section className="content-container">

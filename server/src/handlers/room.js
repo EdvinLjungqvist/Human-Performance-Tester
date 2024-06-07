@@ -26,6 +26,7 @@ const roomHandler = (io, socket) => {
                 rooms.set(roomID, room = new Room(roomID, [new Player(socket.id, profile)], socket.id));
                 console.log(`[Socket] ${socket.id} created room ${room.id}!`);
             }
+
             socket.room = room;
             socket.join(roomID);
             io.in(roomID).emit("room:get", room);
